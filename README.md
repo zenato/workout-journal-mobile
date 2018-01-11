@@ -1,6 +1,6 @@
 # Workout journal
 
-React based workout journal mobile client toy project.
+React Native based workout journal mobile client toy project.
 
 ## Getting Started
 
