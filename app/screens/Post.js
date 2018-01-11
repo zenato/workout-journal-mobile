@@ -200,27 +200,28 @@ class Post extends Component<Props> {
 
 const Performance = ({ events, performance, onEdit, onDelete }: PerformanceProps) => {
   const event = events.find(e => e.id === performance.event.id)
+  const styles = performanceStyles
   return (
-    <View style={styles.performance}>
-      <View style={styles.performanceEvent}>
-        <Text style={styles.performanceEventName}>{event.name}</Text>
-        <Text style={styles.performanceEventUnit}>
+    <View style={styles.container}>
+      <View style={styles.event}>
+        <Text style={styles.eventName}>{event.name}</Text>
+        <Text style={styles.eventUnit}>
           ({performance.value} {event.unit})
         </Text>
       </View>
-      <View style={styles.performanceSets}>
+      <View style={styles.sets}>
         <Text>{performance.set1 || 0}</Text>
         <Text> / {performance.set2 || 0}</Text>
         <Text> / {performance.set3 || 0}</Text>
         <Text> / {performance.set4 || 0}</Text>
         <Text> / {performance.set5 || 0}</Text>
       </View>
-      <View style={styles.performanceButtons}>
+      <View style={styles.buttons}>
         <TouchableOpacity onPress={onEdit}>
-          <Icon name="ios-add-circle" size={20} style={styles.performanceButtonsEdit} />
+          <Icon name="ios-add-circle" size={20} style={styles.editButton} />
         </TouchableOpacity>
         <TouchableOpacity onPress={onDelete}>
-          <Icon name="ios-remove-circle" size={20} style={styles.performanceButtonsDelete} />
+          <Icon name="ios-remove-circle" size={20} style={styles.deleteButton} />
         </TouchableOpacity>
       </View>
     </View>
@@ -243,34 +244,37 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  performance: {
+})
+
+const performanceStyles = StyleSheet.create({
+  container: {
     flexDirection: 'row',
     height: 50,
   },
-  performanceEvent: {
+  event: {
     flex: 1,
     flexDirection: 'row',
   },
-  performanceEventName: {
+  eventName: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  performanceEventUnit: {
+  eventUnit: {
     marginLeft: 5,
     fontSize: 13,
     color: '#aaaaaa',
   },
-  performanceSets: {
+  sets: {
     flex: 1,
     flexDirection: 'row',
   },
-  performanceButtons: {
+  buttons: {
     flexDirection: 'row',
   },
-  performanceButtonsEdit: {
+  editButton: {
     color: '#436cff',
   },
-  performanceButtonsDelete: {
+  deleteButton: {
     color: 'red',
     marginLeft: 10,
   },
