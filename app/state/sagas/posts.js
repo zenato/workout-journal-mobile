@@ -62,7 +62,7 @@ function* handleFetchMorePosts() {
 
 function fetchPostApi(accessToken, id) {
   if (!id) {
-    return Promise.resolve({ item: {} }) // eslint-disable-line
+    return Promise.resolve({ item: { workoutDate: new Date() } }) // eslint-disable-line
   }
   return api
     .fetchPost(accessToken, id)
