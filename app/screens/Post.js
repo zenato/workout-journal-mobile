@@ -87,7 +87,12 @@ class Post extends Component<Props> {
     const { item, updatePost, insertPost, isLoading, navigation } = this.props
     if (isLoading) return
 
-    // TODO: Validation.
+    // Validations
+    const { workoutDate } = this.state
+    if (!workoutDate) {
+      Alert.alert('Check your form.', 'Check workoutDate field.')
+      return
+    }
 
     const params = {
       values: this.state,

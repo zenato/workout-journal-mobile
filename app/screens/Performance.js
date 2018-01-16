@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
+import { Button, StyleSheet, View, Alert } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation/lib/TypeDefinition'
 import Page from '../layouts/Page'
 import PerformanceForm from '../components/posts/PerformanceForm'
@@ -33,7 +33,16 @@ class Performance extends Component<Props> {
     const { navigation } = this.props
     const { onDone, index } = navigation.state.params
 
-    // TODO: Validation.
+    // Validations
+    const { event, value } = this.state
+    if (!event) {
+      Alert.alert('Check your form.', 'Check event field.')
+      return
+    }
+    if (!value) {
+      Alert.alert('Check your form.', 'Check value field.')
+      return
+    }
 
     onDone(index, this.state)
     navigation.goBack()
