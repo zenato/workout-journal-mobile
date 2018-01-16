@@ -21,6 +21,7 @@ import {
   REQUEST_DELETE_POST,
   SUCCESS_DELETE_POST,
   FAILURE_DELETE_POST,
+  CLEAR_POST,
 } from '../actions/posts'
 
 const initialState = {
@@ -148,6 +149,12 @@ export default handleActions(
     [FAILURE_FETCH_EVENTS]: (state, { type }) => ({
       ...state,
       status: type,
+    }),
+
+    [CLEAR_POST]: (state) => ({
+      ...state,
+      item: null,
+      status: null,
     }),
   },
   initialState,
