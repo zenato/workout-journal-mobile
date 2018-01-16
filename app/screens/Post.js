@@ -137,7 +137,7 @@ class Post extends Component<Props> {
       performances:
         index < 0
           ? [...state.performances, performance]
-          : state.performance.map((e, i) => (i === index ? performance : e)),
+          : state.performances.map((e, i) => (i === index ? performance : e)),
     }))
   }
 
