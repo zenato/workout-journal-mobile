@@ -158,8 +158,7 @@ class Post extends Component<Props> {
     return (
       <Page>
         <View style={styles.container}>
-          {!item &&
-            isLoading && (
+          {!item && (
               <View style={styles.loading}>
                 <ActivityIndicator animating={true} />
               </View>
