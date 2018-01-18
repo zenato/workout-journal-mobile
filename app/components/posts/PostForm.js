@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, DatePickerIOS } from 'react-native'
-import _ from 'lodash'
 import { format } from 'date-fns'
 import Field from '../form/Field'
 
