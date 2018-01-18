@@ -19,7 +19,7 @@ export default class PostForm extends Component<Props> {
   }
 
   handlePressWorkoutDate = () => {
-    this.setState(state => ({ isWorkoutDateOpen: !state.isWorkoutDateOpen }))
+    this.setState(({ isWorkoutDateOpen }) => ({ isWorkoutDateOpen: !isWorkoutDateOpen }))
   }
 
   render() {
