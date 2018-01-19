@@ -20,7 +20,9 @@ class Posts extends Component<Props> {
     title: 'Posts',
     headerRight:
       navigation.state.params && navigation.state.params.handleAdd ? (
-        <Button title="Add" onPress={() => navigation.state.params.handleAdd()} />
+        <View style={styles.headerRight}>
+          <Button title="Add" onPress={() => navigation.state.params.handleAdd()} />
+        </View>
       ) : null,
   })
 
@@ -73,6 +75,9 @@ class Posts extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  headerRight: {
+    padding: 10,
+  },
   container: {
     backgroundColor: '#c5c5c5',
     paddingBottom: 1,

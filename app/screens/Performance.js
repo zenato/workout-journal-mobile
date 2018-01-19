@@ -12,8 +12,16 @@ type Props = {
 class Performance extends Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title,
-    headerLeft: <Button title="Cancel" onPress={() => navigation.goBack()} />,
-    headerRight: <Button title="Done" onPress={() => navigation.state.params.handleDone()} />,
+    headerLeft: (
+      <View style={styles.headerLeft}>
+        <Button title="Cancel" onPress={() => navigation.goBack()} />
+      </View>
+    ),
+    headerRight: (
+      <View style={styles.headerRight}>
+        <Button title="Done" onPress={() => navigation.state.params.handleDone()} />
+      </View>
+    ),
   })
 
   constructor(props) {
@@ -63,6 +71,12 @@ class Performance extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  headerLeft: {
+    padding: 10,
+  },
+  headerRight: {
+    padding: 10,
+  },
   container: {
     flex: 1,
     padding: 10,

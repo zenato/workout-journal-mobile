@@ -33,9 +33,15 @@ type Props = {
 class Event extends Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title,
-    headerLeft: <Button title="Cancel" onPress={() => navigation.goBack()} />,
+    headerLeft: (
+      <View style={styles.headerLeft}>
+        <Button title="Cancel" onPress={() => navigation.goBack()} />
+      </View>
+    ),
     headerRight: navigation.state.params.handleDone ? (
-      <Button title="Done" onPress={navigation.state.params.handleDone} />
+      <View style={styles.headerRight}>
+        <Button title="Done" onPress={navigation.state.params.handleDone} />
+      </View>
     ) : null,
   })
 
@@ -123,15 +129,14 @@ class Event extends Component<Props> {
               </View>
             )}
 
-          {item && (
-            <EventForm item={item} isLoading={isLoading} onChange={this.handleChange} />
-          )}
+          {item && <EventForm item={item} isLoading={isLoading} onChange={this.handleChange} />}
 
-          {item && item.id && (
-            <View>
-              <Button title="Delete" onPress={this.handleDelete} />
-            </View>
-          )}
+          {item &&
+            item.id && (
+              <View>
+                <Button title="Delete" onPress={this.handleDelete} />
+              </View>
+            )}
         </View>
       </Page>
     )
@@ -139,6 +144,12 @@ class Event extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  headerLeft: {
+    padding: 10,
+  },
+  headerRight: {
+    padding: 10,
+  },
   container: {
     flex: 1,
     padding: 10,

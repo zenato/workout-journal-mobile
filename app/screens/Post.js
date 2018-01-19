@@ -50,9 +50,15 @@ type PerformanceProps = {
 class Post extends Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title,
-    headerLeft: <Button title="Cancel" onPress={() => navigation.goBack()} />,
+    headerLeft: (
+      <View style={styles.headerLeft}>
+        <Button title="Cancel" onPress={() => navigation.goBack()} />
+      </View>
+    ),
     headerRight: navigation.state.params.handleDone ? (
-      <Button title="Done" onPress={navigation.state.params.handleDone} />
+      <View style={styles.headerRight}>
+        <Button title="Done" onPress={navigation.state.params.handleDone} />
+      </View>
     ) : null,
   })
 
@@ -159,10 +165,10 @@ class Post extends Component<Props> {
       <Page>
         <View style={styles.container}>
           {!item && (
-              <View style={styles.loading}>
-                <ActivityIndicator animating={true} />
-              </View>
-            )}
+            <View style={styles.loading}>
+              <ActivityIndicator animating={true} />
+            </View>
+          )}
 
           {item &&
             isLoading && (
@@ -233,6 +239,12 @@ const Performance = ({ events, performance, onEdit, onDelete }: PerformanceProps
 }
 
 const styles = StyleSheet.create({
+  headerLeft: {
+    padding: 10,
+  },
+  headerRight: {
+    padding: 10,
+  },
   container: {
     flex: 1,
     padding: 10,
