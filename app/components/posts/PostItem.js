@@ -20,7 +20,7 @@ export default ({ item, onPress }: Props) => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    minHeight: 60,
     marginTop: 1,
     padding: 10,
     backgroundColor: '#fff',
