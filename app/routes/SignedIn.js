@@ -72,6 +72,7 @@ export default TabNavigator(
     lazy: true,
     tabBarOptions: {
       showLabel: false,
+      showIcon: true,
     },
   },
 )
