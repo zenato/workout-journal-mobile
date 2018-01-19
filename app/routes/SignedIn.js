@@ -14,6 +14,7 @@ const navigationOptions = {
   },
   headerTitleStyle: {
     color: '#f1f1f1',
+    alignSelf: 'center',
   },
 }
 
