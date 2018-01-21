@@ -180,7 +180,9 @@ class Post extends Component<Props> {
           {item && (
             <View>
               <PostForm item={item} isLoading={isLoading} onChange={this.handleChange} />
-              <Button title="Add Performance" onPress={() => this.handleEditPerformance()} />
+              <View style={styles.performanceAddButton}>
+                <Button title="Add Performance" onPress={() => this.handleEditPerformance()} />
+              </View>
             </View>
           )}
 
@@ -259,6 +261,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     flexDirection: 'column',
+  },
+  performanceAddButton: {
+    marginTop: 10,
   },
 })
 
