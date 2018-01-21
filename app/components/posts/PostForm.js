@@ -48,6 +48,7 @@ export default class PostForm extends Component<Props> {
             returnKeyType="next"
             defaultValue={item.remark}
             onChangeText={text => onChange('remark', text)}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -57,9 +58,7 @@ export default class PostForm extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  inputText: {
-    flex: 1,
-  },
+  inputText: {},
   workoutDateText: {
     fontSize: 15,
   },

@@ -20,6 +20,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         returnKeyType="next"
         defaultValue={item.name}
         onChangeText={text => onChange('name', text)}
+        underlineColorAndroid="transparent"
         style={styles.inputText}
       />
     </Field>
@@ -31,6 +32,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         returnKeyType="next"
         defaultValue={item.value.toString()}
         onChangeText={text => onChange('value', text)}
+        underlineColorAndroid="transparent"
         style={styles.inputText}
       />
     </Field>
@@ -41,6 +43,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         returnKeyType="next"
         defaultValue={item.unit}
         onChangeText={text => onChange('unit', text)}
+        underlineColorAndroid="transparent"
         style={styles.inputText}
       />
     </Field>
@@ -51,6 +54,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         returnKeyType="next"
         defaultValue={item.remark}
         onChangeText={text => onChange('remark', text)}
+        underlineColorAndroid="transparent"
         style={styles.inputText}
       />
     </Field>
@@ -58,7 +62,5 @@ export default ({ isLoading, item, onChange }: Props) => (
 )
 
 const styles = StyleSheet.create({
-  inputText: {
-    flex: 1,
-  },
+  inputText: {},
 })

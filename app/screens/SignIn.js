@@ -55,6 +55,7 @@ class SignIn extends Component<Props> {
               enablesReturnKeyAutomatically={true}
               onChangeText={text => this.setState({ username: text })}
               onSubmitEditing={() => this.password.focus()}
+              underlineColorAndroid="transparent"
             />
             <TextInput
               ref={c => (this.password = c)}
@@ -68,6 +69,7 @@ class SignIn extends Component<Props> {
               onChangeText={text => this.setState({ password: text })}
               enablesReturnKeyAutomatically={true}
               onSubmitEditing={this.handleSubmit}
+              underlineColorAndroid="transparent"
             />
             <Button
               title="Login"

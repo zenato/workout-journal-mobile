@@ -36,6 +36,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.value || ''}`}
             onChangeText={text => onChange('value', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -46,6 +47,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.set1 || ''}`}
             onChangeText={text => onChange('set1', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -56,6 +58,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.set2 || ''}`}
             onChangeText={text => onChange('set2', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -66,6 +69,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.set3 || ''}`}
             onChangeText={text => onChange('set3', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -76,6 +80,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.set4 || ''}`}
             onChangeText={text => onChange('set4', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -86,6 +91,7 @@ export default class PerformanceForm extends Component<Props> {
             returnKeyType="next"
             value={`${item.set5 || ''}`}
             onChangeText={text => onChange('set5', Number(text))}
+            underlineColorAndroid="transparent"
             style={styles.inputText}
           />
         </Field>
@@ -95,7 +101,5 @@ export default class PerformanceForm extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  inputText: {
-    flex: 1,
-  },
+  inputText: {},
 })
