@@ -48,10 +48,7 @@ class Event extends Component<Props> {
   })
 
   state = {
-    name: null,
-    value: null,
-    unit: null,
-    remark: null,
+    item: null,
   }
 
   async componentDidMount() {
@@ -60,7 +57,7 @@ class Event extends Component<Props> {
       id: navigation.state.params.id,
       onSuccess: item => {
         navigation.setParams({ handleDone: this.handleDone })
-        this.setState(item)
+        this.setState({ item })
       },
       onFailure: () => {
         this.showError()
@@ -74,13 +71,14 @@ class Event extends Component<Props> {
   }
 
   handleDone = () => {
-    const { item, updateEvent, insertEvent, isLoading, navigation } = this.props
+    const { updateEvent, insertEvent, isLoading, navigation } = this.props
+    const { item } = this.state
     if (isLoading) return
 
     // TODO: Validation.
 
     const params = {
-      values: this.state,
+      values: item,
       onSuccess: () => navigation.goBack(),
       onFailure: () => this.showError(),
     }
@@ -110,10 +108,17 @@ class Event extends Component<Props> {
     Alert.alert('Error', 'Oops, An expected error seems to have occurred.')
   }
 
-  handleChange = (fieldName, text) => this.setState({ [fieldName]: text })
+  handleChange = (fieldName, text) =>
+    this.setState(({ item }) => ({
+      item: {
+        ...item,
+        [fieldName]: text,
+      },
+    }))
 
   render() {
-    const { isLoading, item } = this.props
+    const { isLoading } = this.props
+    const { item } = this.state
     return (
       <Page>
         <View style={styles.container}>
@@ -124,21 +129,23 @@ class Event extends Component<Props> {
               </View>
             )}
 
-          {item &&
-            isLoading && (
-              <View>
-                <Text>Now loading...</Text>
-              </View>
-            )}
+          {item && (
+            <View>
+              {isLoading && (
+                <View>
+                  <Text>Now loading...</Text>
+                </View>
+              )}
 
-          {item && <EventForm item={item} isLoading={isLoading} onChange={this.handleChange} />}
+              <EventForm item={item} isLoading={isLoading} onChange={this.handleChange} />
 
-          {item &&
-            item.id && (
-              <View style={styles.buttons}>
-                <Button title="Delete" onPress={this.handleDelete} />
-              </View>
-            )}
+              {item.id && (
+                <View style={styles.buttons}>
+                  <Button title="Delete" onPress={this.handleDelete} />
+                </View>
+              )}
+            </View>
+          )}
         </View>
       </Page>
     )

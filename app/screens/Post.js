@@ -65,9 +65,7 @@ class Post extends Component<Props> {
   })
 
   state = {
-    workoutDate: null,
-    remark: null,
-    performances: [],
+    item: null,
   }
 
   async componentDidMount() {
@@ -76,7 +74,7 @@ class Post extends Component<Props> {
       id: navigation.state.params.id,
       onSuccess: ({ post }) => {
         navigation.setParams({ handleDone: this.handleDone })
-        this.setState(post.item)
+        this.setState({ item: post.item })
       },
       onFailure: () => {
         this.showError()
@@ -92,18 +90,18 @@ class Post extends Component<Props> {
   handleChange = (field, value) => this.setState({ [field]: value })
 
   handleDone = () => {
-    const { item, updatePost, insertPost, isLoading, navigation } = this.props
+    const { updatePost, insertPost, isLoading, navigation } = this.props
+    const { item } = this.state
     if (isLoading) return
 
     // Validations
-    const { workoutDate } = this.state
-    if (!workoutDate) {
+    if (!item.workoutDate) {
       Alert.alert('Check your form.', 'Check workoutDate field.')
       return
     }
 
     const params = {
-      values: this.state,
+      values: item,
       onSuccess: () => navigation.goBack(),
       onFailure: () => this.showError(),
     }
@@ -135,10 +133,10 @@ class Post extends Component<Props> {
 
   handleEditPerformance = (index = -1) => {
     const { navigation, events } = this.props
-    const { performances } = this.state
+    const { performances } = this.state.item
     navigation.navigate('Performance', {
       title: `${index < 0 ? 'New' : 'Edit'} Performance`,
-      item: performances[index] || {},
+      item: (performances || [])[index] || {},
       events,
       index,
       onDone: this.handleDonePerformance,
@@ -146,23 +144,32 @@ class Post extends Component<Props> {
   }
 
   handleDonePerformance = (index, performance) => {
-    this.setState(state => ({
-      performances:
-        index < 0
-          ? [...state.performances, performance]
-          : state.performances.map((e, i) => (i === index ? performance : e)),
-    }))
+    this.setState(({ item }) => {
+      const prev = item.performances || []
+      return {
+        item: {
+          ...item,
+          performances:
+            index < 0
+              ? [...prev, performance]
+              : prev.map((e, i) => (i === index ? performance : e)),
+        },
+      }
+    })
   }
 
   handleDeletePerformance = index => {
-    this.setState(state => ({
-      performances: state.performances.filter((p, i) => i !== index),
+    this.setState(({ item }) => ({
+      item: {
+        ...item,
+        performances: item.performances.filter((p, i) => i !== index),
+      },
     }))
   }
 
   render() {
     const { isLoading, events } = this.props
-    const { performances, ...item } = this.state
+    const { item } = this.state
     return (
       <Page>
         <View style={styles.container}>
@@ -172,40 +179,42 @@ class Post extends Component<Props> {
             </View>
           )}
 
-          {item &&
-            isLoading && (
-              <View>
-                <Text>Now loading...</Text>
-              </View>
-            )}
-
           {item && (
             <View>
-              <PostForm item={this.state} isLoading={isLoading} onChange={this.handleChange} />
+              {isLoading && (
+                <View>
+                  <Text>Now loading...</Text>
+                </View>
+              )}
+
+              <PostForm item={item} isLoading={isLoading} onChange={this.handleChange} />
+
               <View style={styles.performanceAddButton}>
                 <Button title="Add Performance" onPress={() => this.handleEditPerformance()} />
               </View>
+
+              <View style={styles.performances}>
+                {item.performances &&
+                  item.performances.map((performance, index) => {
+                    return (
+                      <Performance
+                        key={`${performance.id}-${index}`}
+                        events={events}
+                        performance={performance}
+                        onEdit={() => this.handleEditPerformance(index)}
+                        onDelete={() => this.handleDeletePerformance(index)}
+                      />
+                    )
+                  })}
+              </View>
+
+              {item.id && (
+                <View>
+                  <Button title="Delete" onPress={this.handleDelete} />
+                </View>
+              )}
             </View>
           )}
-
-          <View style={styles.performances}>
-            {performances.map((performance, index) => (
-              <Performance
-                key={index}
-                events={events}
-                performance={performance}
-                onEdit={() => this.handleEditPerformance(index)}
-                onDelete={() => this.handleDeletePerformance(index)}
-              />
-            ))}
-          </View>
-
-          {item &&
-            item.id && (
-              <View>
-                <Button title="Delete" onPress={this.handleDelete} />
-              </View>
-            )}
         </View>
       </Page>
     )
@@ -261,7 +270,6 @@ const styles = StyleSheet.create({
   },
   performances: {
     marginTop: 20,
-    flex: 1,
     flexDirection: 'column',
   },
   performanceAddButton: {
