@@ -135,7 +135,7 @@ class Event extends Component<Props> {
 
           {item &&
             item.id && (
-              <View>
+              <View style={styles.buttons}>
                 <Button title="Delete" onPress={this.handleDelete} />
               </View>
             )}
@@ -161,6 +161,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttons: {
+    marginTop: 10,
   },
 })
 
