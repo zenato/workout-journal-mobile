@@ -10,9 +10,7 @@ import {
   failureFetchPosts,
   successFetchMorePosts,
   failureFetchMorePosts,
-  fetchEvents,
   successFetchEvents,
-  fetchPost,
   successFetchPost,
   failureFetchPost,
   successInsertPost,
@@ -61,13 +59,13 @@ function* handleFetchMorePosts() {
 }
 
 function fetchPostApi(accessToken, id) {
-  if (!id) {
-    return Promise.resolve({ item: { workoutDate: new Date() } }) // eslint-disable-line
+  if (id) {
+    return api
+      .fetchPost(accessToken, id)
+      .then(item => ({ item }))
+      .catch(error => ({ error }))
   }
-  return api
-    .fetchPost(accessToken, id)
-    .then(item => ({ item }))
-    .catch(error => ({ error }))
+  return null
 }
 
 function fetchEventsApi(accessToken) {
@@ -82,21 +80,18 @@ function* handleFetchPostWithEvents() {
     const { payload: { id, onSuccess, onFailure } } = yield take(REQUEST_FETCH_POST_WITH_EVENTS)
     const accessToken = yield select(state => state.users.accessToken)
 
-    yield put(fetchPost())
-    yield put(fetchEvents())
-
     const [post, events] = yield all([
       call(fetchPostApi, accessToken, id),
       call(fetchEventsApi, accessToken),
     ])
 
-    const error = post.error || events.error
+    const error = (post && post.error) || (events && events.error)
     if (error) {
       yield put(failureFetchPost(error))
       onFailure && onFailure(error)
     } else {
       yield put(successFetchEvents(events))
-      yield put(successFetchPost(post))
+      yield put(successFetchPost(post || {}))
       onSuccess && onSuccess({ post, events })
     }
   }
