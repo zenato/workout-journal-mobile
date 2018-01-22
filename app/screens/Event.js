@@ -38,11 +38,13 @@ class Event extends Component<Props> {
         <Button title="Cancel" onPress={() => navigation.goBack()} />
       </View>
     ),
-    headerRight: navigation.state.params.handleDone ? (
+    headerRight: (
       <View style={styles.headerRight}>
-        <Button title="Done" onPress={navigation.state.params.handleDone} />
+        {navigation.state.params.handleDone && (
+          <Button title="Done" onPress={navigation.state.params.handleDone} />
+        )}
       </View>
-    ) : null,
+    ),
   })
 
   state = {
