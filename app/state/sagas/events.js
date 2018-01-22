@@ -41,27 +41,20 @@ function* handleFetchEvents() {
 }
 
 function fetchEvent(accessToken, id) {
-  if (id === null) {
-    return Promise.resolve({
-      item: {
-        name: '',
-        unit: 'KG',
-        value: 0,
-        remark: '',
-      },
-    }) // eslint-disable-line
+  if (id !== null) {
+    return api
+      .fetchEvent(accessToken, id)
+      .then(item => ({ item }))
+      .catch(error => ({ error }))
   }
-  return api
-    .fetchEvent(accessToken, id)
-    .then(item => ({ item }))
-    .catch(error => ({ error }))
+  return null
 }
 
 function* handleFetchEvent() {
   while (true) {
     const { payload: { id, onSuccess, onFailure } } = yield take(REQUEST_FETCH_EVENT)
     const accessToken = yield select(state => state.users.accessToken)
-    const { item, error } = yield call(fetchEvent, accessToken, id)
+    const { item, error } = (yield call(fetchEvent, accessToken, id)) || {}
     if (error) {
       yield put(failureFetchEvent(error))
       onFailure && onFailure(error)

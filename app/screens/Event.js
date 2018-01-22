@@ -57,7 +57,15 @@ class Event extends Component<Props> {
       id: navigation.state.params.id,
       onSuccess: item => {
         navigation.setParams({ handleDone: this.handleDone })
-        this.setState({ item })
+        this.setState({
+          item: {
+            name: '',
+            unit: 'KG',
+            value: 0,
+            remark: '',
+            ...item,
+          },
+        })
       },
       onFailure: () => {
         this.showError()
