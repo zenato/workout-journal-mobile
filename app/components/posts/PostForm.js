@@ -35,11 +35,10 @@ export default class PostForm extends Component<Props> {
           date: workoutDate,
         })
         if (action !== DatePickerAndroid.dismissedAction) {
-          console.log('date change')
           onChange('workoutDate', new Date(year, month, day))
         }
       } catch ({ code, message }) {
-        console.warn('Cannot open date picker', message)
+        // TODO: alert message
       }
     } else {
       this.setState(({ isWorkoutDateOpen }) => ({ isWorkoutDateOpen: !isWorkoutDateOpen }))
