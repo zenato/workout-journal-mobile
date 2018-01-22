@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, TextInput, View, Text, TouchableOpacity, DatePickerIOS } from 'react-native'
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  TouchableOpacity,
+  DatePickerIOS,
+  DatePickerAndroid,
+  Platform,
+} from 'react-native'
 import { format } from 'date-fns'
 import Field from '../form/Field'
 
@@ -18,8 +27,23 @@ export default class PostForm extends Component<Props> {
     isWorkoutDateOpen: false,
   }
 
-  handlePressWorkoutDate = () => {
-    this.setState(({ isWorkoutDateOpen }) => ({ isWorkoutDateOpen: !isWorkoutDateOpen }))
+  handlePressWorkoutDate = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const { workoutDate, onChange } = this.props
+        const { action, year, month, day } = await DatePickerAndroid.open({
+          date: workoutDate,
+        })
+        if (action !== DatePickerAndroid.dismissedAction) {
+          console.log('date change')
+          onChange('workoutDate', new Date(year, month, day))
+        }
+      } catch ({ code, message }) {
+        console.warn('Cannot open date picker', message)
+      }
+    } else {
+      this.setState(({ isWorkoutDateOpen }) => ({ isWorkoutDateOpen: !isWorkoutDateOpen }))
+    }
   }
 
   render() {

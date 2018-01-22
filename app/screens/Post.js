@@ -161,8 +161,8 @@ class Post extends Component<Props> {
   }
 
   render() {
-    const { isLoading, item, events } = this.props
-    const { performances } = this.state
+    const { isLoading, events } = this.props
+    const { performances, ...item } = this.state
     return (
       <Page>
         <View style={styles.container}>
@@ -181,7 +181,7 @@ class Post extends Component<Props> {
 
           {item && (
             <View>
-              <PostForm item={item} isLoading={isLoading} onChange={this.handleChange} />
+              <PostForm item={this.state} isLoading={isLoading} onChange={this.handleChange} />
               <View style={styles.performanceAddButton}>
                 <Button title="Add Performance" onPress={() => this.handleEditPerformance()} />
               </View>
