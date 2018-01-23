@@ -16,7 +16,6 @@
 	"dependencies": {
 		"axios": "^0.16.2",
 		"date-fns": "^1.29.0",
-		"lodash": "^4.17.4",
 		"query-string": "^5.0.0",
 		"react": "16.2.0",
 		"react-native": "0.52.1",

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, TextInput, View, Picker } from 'react-native'
-import _ from 'lodash'
 import Field from '../form/Field'
 
 type Props = {
@@ -24,7 +23,10 @@ export default class PerformanceForm extends Component<Props> {
     return (
       <View>
         <Field label="Event">
-          <Picker selectedValue={_.get(item.event, 'id')} onValueChange={this.handleChangeEvent}>
+          <Picker
+            selectedValue={item.event && item.event.id}
+            onValueChange={this.handleChangeEvent}
+          >
             <Picker.Item key={0} label={'Select event'} value={null} />
             {events.map(e => <Picker.Item key={e.id} label={e.name} value={e.id} />)}
           </Picker>
