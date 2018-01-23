@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Button, FlatList, ActivityIndicator, StyleSheet } from 'react-native'
+import { View, Button, FlatList, ActivityIndicator, StyleSheet, RefreshControl } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation/lib/TypeDefinition'
 import { formatDate } from '../lib/date'
 import { fetchPosts, REQUEST_FETCH_POSTS } from '../state/actions/posts'
@@ -26,6 +26,10 @@ class Posts extends Component<Props> {
       ) : null,
   })
 
+  state = {
+    refreshing: false,
+  }
+
   componentDidMount() {
     const { navigation } = this.props
     this.props.fetchPosts({
@@ -49,6 +53,15 @@ class Posts extends Component<Props> {
     })
   }
 
+  handleRefresh = () => {
+    this.setState({ refreshing: true })
+    this.props.fetchPosts({
+      onSuccess: () => {
+        this.setState({ refreshing: false })
+      },
+    })
+  }
+
   render() {
     const { items, isLoading } = this.props
     return (
@@ -67,6 +80,9 @@ class Posts extends Component<Props> {
               <PostItem item={item} onPress={() => this.handlePress(item)} />
             )}
             keyExtractor={item => item.id}
+            refreshControl={
+              <RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh} />
+            }
           />
         </View>
       </Page>
