@@ -48,7 +48,7 @@ export default TabNavigator(
       screen: PostNavigator,
       navigationOptions: {
         tabBarIcon: (props: { tintColor: ?string, focused: ?boolean }) => (
-          <Icon name="ios-book" size={26} style={{ color: props.tintColor }} />
+          <Icon name="ios-clipboard-outline" size={26} style={{ color: props.tintColor }} />
         ),
       },
     },
@@ -56,7 +56,7 @@ export default TabNavigator(
       screen: EventNavigator,
       navigationOptions: {
         tabBarIcon: (props: { tintColor: ?string, focused: ?boolean }) => (
-          <Icon name="ios-home" size={26} style={{ color: props.tintColor }} />
+          <Icon name="ios-bicycle" size={26} style={{ color: props.tintColor }} />
         ),
       },
     },
