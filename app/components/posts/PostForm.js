@@ -72,6 +72,7 @@ export default class PostForm extends Component<Props> {
             defaultValue={item.remark}
             onChangeText={text => onChange('remark', text)}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>

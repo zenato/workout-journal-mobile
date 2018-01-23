@@ -48,6 +48,7 @@ export default class PerformanceForm extends Component<Props> {
             value={`${item.set1 || ''}`}
             onChangeText={text => onChange('set1', Number(text))}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>
@@ -59,6 +60,7 @@ export default class PerformanceForm extends Component<Props> {
             value={`${item.set2 || ''}`}
             onChangeText={text => onChange('set2', Number(text))}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>
@@ -70,6 +72,7 @@ export default class PerformanceForm extends Component<Props> {
             value={`${item.set3 || ''}`}
             onChangeText={text => onChange('set3', Number(text))}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>
@@ -81,6 +84,7 @@ export default class PerformanceForm extends Component<Props> {
             value={`${item.set4 || ''}`}
             onChangeText={text => onChange('set4', Number(text))}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>
@@ -92,6 +96,7 @@ export default class PerformanceForm extends Component<Props> {
             value={`${item.set5 || ''}`}
             onChangeText={text => onChange('set5', Number(text))}
             underlineColorAndroid="transparent"
+            clearButtonMode="while-editing"
             style={styles.inputText}
           />
         </Field>

@@ -21,6 +21,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         defaultValue={item.name}
         onChangeText={text => onChange('name', text)}
         underlineColorAndroid="transparent"
+        clearButtonMode="while-editing"
         style={styles.inputText}
       />
     </Field>
@@ -33,6 +34,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         defaultValue={item.value.toString()}
         onChangeText={text => onChange('value', text)}
         underlineColorAndroid="transparent"
+        clearButtonMode="while-editing"
         style={styles.inputText}
       />
     </Field>
@@ -44,6 +46,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         defaultValue={item.unit}
         onChangeText={text => onChange('unit', text)}
         underlineColorAndroid="transparent"
+        clearButtonMode="while-editing"
         style={styles.inputText}
       />
     </Field>
@@ -55,6 +58,7 @@ export default ({ isLoading, item, onChange }: Props) => (
         defaultValue={item.remark}
         onChangeText={text => onChange('remark', text)}
         underlineColorAndroid="transparent"
+        clearButtonMode="while-editing"
         style={styles.inputText}
       />
     </Field>
