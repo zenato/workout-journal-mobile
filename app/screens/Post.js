@@ -79,7 +79,7 @@ class Post extends Component<Props> {
           item: {
             performances: [],
             ...item,
-            workoutDate: new Date(item.workoutDate),
+            workoutDate: item ? new Date(item.workoutDate) : new Date(),
           },
         })
       },
