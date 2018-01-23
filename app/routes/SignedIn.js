@@ -42,29 +42,34 @@ const ProfileNavigator = StackNavigator(
   { navigationOptions },
 )
 
+type TabBarIconProps = {
+  tintColor: ?string,
+  focused: ?boolean,
+}
+
 export default TabNavigator(
   {
     Posts: {
       screen: PostNavigator,
       navigationOptions: {
-        tabBarIcon: (props: { tintColor: ?string, focused: ?boolean }) => (
-          <Icon name="ios-clipboard-outline" size={26} style={{ color: props.tintColor }} />
+        tabBarIcon: ({ tintColor }: TabBarIconProps) => (
+          <Icon name="ios-clipboard-outline" size={26} style={{ color: tintColor }} />
         ),
       },
     },
     Events: {
       screen: EventNavigator,
       navigationOptions: {
-        tabBarIcon: (props: { tintColor: ?string, focused: ?boolean }) => (
-          <Icon name="ios-bicycle" size={26} style={{ color: props.tintColor }} />
+        tabBarIcon: ({ tintColor }: TabBarIconProps) => (
+          <Icon name="ios-bicycle" size={26} style={{ color: tintColor }} />
         ),
       },
     },
     Profile: {
       screen: ProfileNavigator,
       navigationOptions: {
-        tabBarIcon: (props: { tintColor: ?string, focused: ?boolean }) => (
-          <Icon name="ios-person" size={26} style={{ color: props.tintColor }} />
+        tabBarIcon: ({ tintColor }: TabBarIconProps) => (
+          <Icon name="ios-person" size={26} style={{ color: tintColor }} />
         ),
       },
     },
