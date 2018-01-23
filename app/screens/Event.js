@@ -149,7 +149,7 @@ class Event extends Component<Props> {
 
               {item.id && (
                 <View style={styles.buttons}>
-                  <Button title="Delete" onPress={this.handleDelete} />
+                  <Button title="Delete" color="#f00" onPress={this.handleDelete} />
                 </View>
               )}
             </View>

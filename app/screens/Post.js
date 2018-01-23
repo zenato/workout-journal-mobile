@@ -216,7 +216,7 @@ class Post extends Component<Props> {
 
               {item.id && (
                 <View>
-                  <Button title="Delete" onPress={this.handleDelete} />
+                  <Button title="Delete" color="#f00" onPress={this.handleDelete} />
                 </View>
               )}
             </View>
