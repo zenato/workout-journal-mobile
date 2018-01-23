@@ -73,12 +73,13 @@ class Post extends Component<Props> {
     fetchPostWithEvents({
       id: navigation.state.params.id,
       onSuccess: ({ post }) => {
+        const { item } = post || {}
         navigation.setParams({ handleDone: this.handleDone })
         this.setState({
           item: {
-            workoutDate: new Date(),
             performances: [],
-            ...(post || {}).item,
+            ...item,
+            workoutDate: new Date(item.workoutDate),
           },
         })
       },
