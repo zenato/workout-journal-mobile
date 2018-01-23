@@ -34,7 +34,12 @@ class Profile extends Component<Props> {
           <View style={styles.contents}>
             <Text style={styles.loggedInfo}>Logged in {loggedInfo.username}</Text>
           </View>
-          <Button title="Sign Out" onPress={this.handleLogout} style={styles.signOutButton} />
+          <Button
+            title="Sign Out"
+            color="#f00"
+            onPress={this.handleLogout}
+            style={styles.signOutButton}
+          />
         </View>
       </Page>
     )
